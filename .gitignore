@@ -20,4 +20,4 @@ buildNumber.properties
 
 **/.gitignore
 
-#**/README.md
+**/README.md
