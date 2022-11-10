@@ -18,6 +18,8 @@
     <module>risk-common</module>
     <module>risk-gateway</module>
     <module>risk-algorithms</module>
+    <module>risk-auth</module>
+    <module>risk-indicator</module>
   </modules>
 
 </project>
