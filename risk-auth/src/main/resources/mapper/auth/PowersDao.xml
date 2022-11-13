@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gov.risk.auth.modules.sys.dao.PowersDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.gov.risk.auth.modules.sys.entity.PowersEntity" id="powersMap">
+        <result property="powerId" column="power_id"/>
+        <result property="powerName" column="power_name"/>
+        <result property="powerUrl" column="power_url"/>
+        <result property="powerIcon" column="power_icon"/>
+        <result property="powerParentId" column="power_parent_id"/>
+    </resultMap>
+
+
+</mapper>
