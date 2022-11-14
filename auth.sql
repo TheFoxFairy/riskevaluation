@@ -72,6 +72,10 @@ CREATE TABLE IF NOT EXISTS powers
 (
     10
 ) PRIMARY KEY COMMENT '权限ID',
+    power_type VARCHAR
+(
+    30
+)  COMMENT '权限类型',
     power_name VARCHAR
 (
     30
@@ -90,14 +94,25 @@ CREATE TABLE IF NOT EXISTS powers
 ) default -1 COMMENT '父权限ID'
     ) CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT '权限表';
 
-INSERT INTO powers(power_id, power_name, power_url, power_icon)
-VALUES (1, "工作台", "/dashboard", "mdi:monitor-dashboard");
-INSERT INTO powers(power_id, power_name, power_url, power_icon, power_parent_id)
-VALUES (2, "评估分析", "/analysis", "mdi:apps-box", 1);
-INSERT INTO powers(power_id, power_name, power_url, power_icon, power_parent_id)
-VALUES (3, "预测分析", "/forecast", "ph:align-bottom", 1);
-INSERT INTO powers(power_id, power_name, power_url, power_icon, power_parent_id)
-VALUES (4, "时间线", "/time", "ph:alarm", 1);
+INSERT INTO powers(power_id, power_name,power_type, power_url, power_icon)
+VALUES (1, "工作台", "页面", "/dashboard", "mdi:monitor-dashboard");
+INSERT INTO powers(power_id, power_name,power_type, power_url, power_icon, power_parent_id)
+VALUES (2, "评估分析","页面",  "/analysis", "mdi:apps-box", 1);
+INSERT INTO powers(power_id, power_name,power_type, power_url, power_icon, power_parent_id)
+VALUES (3, "预测分析","页面", "/forecast", "ph:align-bottom", 1);
+INSERT INTO powers(power_id, power_name,power_type, power_url, power_icon, power_parent_id)
+VALUES (4, "时间线","页面", "/time", "ph:alarm", 1);
+
+INSERT INTO powers(power_id, power_name,power_type, power_url)
+VALUES (5, "用户API","api", "/auth/users");
+INSERT INTO powers(power_id, power_name,power_type, power_url)
+VALUES (6, "角色API","api", "/auth/roles");
+INSERT INTO powers(power_id, power_name,power_type, power_url)
+VALUES (7, "权限API","api", "/auth/powers");
+INSERT INTO powers(power_id, power_name,power_type, power_url)
+VALUES (8, "用户角色API","api", "/auth/userrole");
+INSERT INTO powers(power_id, power_name,power_type, power_url)
+VALUES (9, "角色权限API","api", "/auth/rolepower");
 
 -- 用户角色表
 CREATE TABLE IF NOT EXISTS user_role
@@ -140,6 +155,16 @@ INSERT INTO role_power(role_id, power_id)
 VALUES (1, 3);
 INSERT INTO role_power(role_id, power_id)
 VALUES (1, 4);
+INSERT INTO role_power(role_id, power_id)
+VALUES (1, 5);
+INSERT INTO role_power(role_id, power_id)
+VALUES (1, 6);
+INSERT INTO role_power(role_id, power_id)
+VALUES (1, 7);
+INSERT INTO role_power(role_id, power_id)
+VALUES (1, 8);
+INSERT INTO role_power(role_id, power_id)
+VALUES (1, 9);
 
 
 CREATE TABLE sys_oauth_client_details

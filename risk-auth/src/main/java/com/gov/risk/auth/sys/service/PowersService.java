@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.gov.risk.auth.sys.entity.PowersEntity;
 import com.gov.risk.common.utils.PageUtils;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
  * 权限表
@@ -16,5 +18,7 @@ import java.util.Map;
 public interface PowersService extends IService<PowersEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    HashMap<String, String> getPowerAllRoles();
 }
 

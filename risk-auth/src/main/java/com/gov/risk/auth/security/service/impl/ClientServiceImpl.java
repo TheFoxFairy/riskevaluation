@@ -42,6 +42,9 @@ public class ClientServiceImpl implements ClientService {
     public void initData() {
         String clientSecret = passwordEncoder.encode("123456");
         clientList = new ArrayList<>();
+//        System.out.println("==================================================");
+//        System.out.println(rolesService.listWithTree2());
+//        System.out.println("==================================================");
         // 1、密码模式
         clientList.add(Client.builder()
                 .clientId("client-app")
@@ -51,23 +54,23 @@ public class ClientServiceImpl implements ClientService {
                 .scopeRequire(false)
                 .scope("all")
                 .authorizedGrantTypes("password,refresh_token")
-                .authorities(rolesService.listWithTree2())
+                .authorities("super")
                 .accessTokenValidity(3600)
                 .refreshTokenValidity(86400).build());
 
-//        // 2、授权码模式
-//        clientList.add(Client.builder()
-//                .clientId("client-app-2")
-//                .resourceIds("oauth2-resource2")
-//                .secretRequire(false)
-//                .clientSecret(clientSecret)
-//                .scopeRequire(false)
-//                .scope("all")
-//                .authorizedGrantTypes("authorization_code,refresh_token")
-//                .webServerRedirectUri("https://www.gathub.cn,https://www.baidu.com")
-//                .authorities("USER")
-//                .accessTokenValidity(3600)
-//                .refreshTokenValidity(86400).build());
+        // 2、授权码模式
+        clientList.add(Client.builder()
+                .clientId("client-app-2")
+                .resourceIds("oauth2-resource2")
+                .secretRequire(false)
+                .clientSecret(clientSecret)
+                .scopeRequire(false)
+                .scope("all")
+                .authorizedGrantTypes("authorization_code,refresh_token")
+                .webServerRedirectUri("/")
+                .authorities("custom")
+                .accessTokenValidity(3600)
+                .refreshTokenValidity(86400).build());
     }
 
     @Override

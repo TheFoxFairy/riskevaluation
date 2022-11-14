@@ -7,6 +7,7 @@
     <resultMap type="com.gov.risk.auth.sys.entity.PowersEntity" id="powersMap">
         <result property="powerId" column="power_id"/>
         <result property="powerName" column="power_name"/>
+        <result property="powerType" column="power_type"/>
         <result property="powerUrl" column="power_url"/>
         <result property="powerIcon" column="power_icon"/>
         <result property="powerParentId" column="power_parent_id"/>

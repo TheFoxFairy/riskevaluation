@@ -53,7 +53,6 @@ public class UserServiceImpl implements UserService {
         } else if (!userPrincipal.isCredentialsNonExpired()) {
             throw new CredentialsExpiredException(MessageConstant.CREDENTIALS_EXPIRED);
         }
-        System.out.println(userPrincipal);
         return userPrincipal;
     }
 

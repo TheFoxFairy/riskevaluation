@@ -35,6 +35,10 @@ public class PowersEntity implements Serializable {
 	 */
 	private String powerUrl;
 	/**
+	 * 权限类型
+	 */
+	private String powerType;
+	/**
 	 * 权限图标
 	 */
 	private String powerIcon;

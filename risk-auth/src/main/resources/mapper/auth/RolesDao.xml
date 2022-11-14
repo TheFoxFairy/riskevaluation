@@ -11,6 +11,7 @@
         <collection property="powers" ofType="com.gov.risk.auth.sys.entity.PowersEntity">
             <result property="powerId" column="power_id"/>
             <result property="powerName" column="power_name"/>
+            <result property="powerType" column="power_type"/>
             <result property="powerUrl" column="power_url"/>
             <result property="powerIcon" column="power_icon"/>
             <result property="powerParentId" column="power_parent_id"/>
@@ -20,7 +21,7 @@
     <select id="listWithTree" resultMap="rolesMap" parameterType="map">
         select
             roles.role_id as role_id,roles.role_name as role_name,roles.create_time,
-            powers.power_id,powers.power_name,powers.power_url,powers.power_icon,powers.power_parent_id
+            powers.power_id,powers.power_name,powers.power_type,powers.power_url,powers.power_icon,powers.power_parent_id
         from roles
                  left join role_power on roles.role_id = role_power.role_id
                  left join powers on role_power.power_id = powers.power_id
@@ -29,6 +30,11 @@
             <choose>
                 <when test="roleId != null">
                     roles.role_id = #{roleId}
+                </when>
+            </choose>
+            <choose>
+                <when test="powerType != null">
+                    powers.power_type = #{powerType}
                 </when>
             </choose>
         </where>
