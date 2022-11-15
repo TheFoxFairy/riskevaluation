@@ -2,6 +2,7 @@ package com.gov.risk.auth.security.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
 import com.gov.risk.auth.constant.MessageConstant;
+import com.gov.risk.auth.security.entity.User;
 import com.gov.risk.auth.security.service.UserService;
 import com.gov.risk.auth.sys.entity.UsersEntity;
 import com.gov.risk.auth.sys.service.UsersService;
@@ -43,7 +44,19 @@ public class UserServiceImpl implements UserService {
         if (CollUtil.isEmpty(findUserList)) {
             throw new UsernameNotFoundException(MessageConstant.USERNAME_PASSWORD_ERROR);
         }
-        UserPrincipal userPrincipal = new UserPrincipal(findUserList.get(0));
+
+        User user = new User();
+        UsersEntity usersEntity = findUserList.get(0);
+        user.setId(usersEntity.getUserId());
+        user.setUsername(usersEntity.getUserName());
+        user.setPassword(usersEntity.getPassword());
+        user.setStatus(usersEntity.getStatus());
+        user.setRoles(usersEntity.getAllRolesName());
+
+        UserPrincipal userPrincipal = new UserPrincipal(user);
+
+        System.out.println(userPrincipal);
+
         if (!userPrincipal.isEnabled()) {
             throw new DisabledException(MessageConstant.ACCOUNT_DISABLED);
         } else if (!userPrincipal.isAccountNonLocked()) {

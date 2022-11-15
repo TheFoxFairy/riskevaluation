@@ -20,6 +20,7 @@
         <module>risk-algorithms</module>
         <module>risk-auth</module>
         <module>risk-indicator</module>
+        <module>risk-sys</module>
         <module>renren-generator</module>
     </modules>
 

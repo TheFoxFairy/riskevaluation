@@ -12,19 +12,14 @@ import java.util.Map;
 
 @Component
 public class JwtTokenEnhancer implements TokenEnhancer {
-    /**
-     * JWT内容增强器
-     */
     @Override
     public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-
-        Map<String, Object> additionalInformation = new HashMap<>();
-        additionalInformation.put("userId", userPrincipal.getUserId());
-        additionalInformation.put("username", userPrincipal.getUsername());
-
-        ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInformation);
+        Map<String, Object> info = new HashMap<>();
+        // 把用户ID设置到JWT中
+        info.put("id", userPrincipal.getId());
+        ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(info);
         return accessToken;
     }
-
 }
+

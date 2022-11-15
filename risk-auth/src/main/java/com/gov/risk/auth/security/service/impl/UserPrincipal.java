@@ -1,6 +1,6 @@
 package com.gov.risk.auth.security.service.impl;
 
-import com.gov.risk.auth.sys.entity.UsersEntity;
+import com.gov.risk.auth.security.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +20,7 @@ public class UserPrincipal implements UserDetails {
     /**
      * ID
      */
-    private Integer userId;
+    private Long id;
     /**
      * 用户名
      */
@@ -38,14 +38,14 @@ public class UserPrincipal implements UserDetails {
      */
     private Collection<SimpleGrantedAuthority> authorities;
 
-    public UserPrincipal(UsersEntity user) {
-        this.setUserId(user.getUserId());
-        this.setUsername(user.getUserName());
+    public UserPrincipal(User user) {
+        this.setId(Long.valueOf(user.getId()));
+        this.setUsername(user.getUsername());
         this.setPassword(user.getPassword());
         this.setEnabled(user.getStatus() == 1);
-        if (user.getRole() != null) {
+        if (user.getRoles() != null) {
             authorities = new ArrayList<>();
-            authorities.add(new SimpleGrantedAuthority(user.getRole().getRoleName()));
+            user.getRoles().forEach(item -> authorities.add(new SimpleGrantedAuthority(item)));
         }
     }
 

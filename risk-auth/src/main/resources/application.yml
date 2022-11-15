@@ -10,11 +10,11 @@ spring:
         server-addr: 127.0.0.1:8848
         password: nacos
         username: nacos
-#  redis:
-#    database: 0
-#    port: 6379
-#    host: localhost
-#    password:
+  redis:
+    database: 0
+    port: 6379
+    host: localhost
+    password:
 
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml
@@ -35,4 +35,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: '*'
+        include: "*"

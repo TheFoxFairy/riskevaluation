@@ -31,6 +31,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Autowired
     PasswordEncoder passwordEncoder;
+
     @Autowired
     RolesService rolesService;
 
@@ -42,9 +43,9 @@ public class ClientServiceImpl implements ClientService {
     public void initData() {
         String clientSecret = passwordEncoder.encode("123456");
         clientList = new ArrayList<>();
-//        System.out.println("==================================================");
-//        System.out.println(rolesService.listWithTree2());
-//        System.out.println("==================================================");
+
+//        System.out.println("rolesService.listWithTree2():"+rolesService.listWithTree2());
+
         // 1、密码模式
         clientList.add(Client.builder()
                 .clientId("client-app")
@@ -54,9 +55,21 @@ public class ClientServiceImpl implements ClientService {
                 .scopeRequire(false)
                 .scope("all")
                 .authorizedGrantTypes("password,refresh_token")
-                .authorities("super")
+                .authorities(rolesService.listWithTree2())
                 .accessTokenValidity(3600)
                 .refreshTokenValidity(86400).build());
+
+//        clientList.add(Client.builder()
+//                .clientId("client-app")
+//                .resourceIds("oauth2-resource")
+//                .secretRequire(false)
+//                .clientSecret(clientSecret)
+//                .scopeRequire(false)
+//                .scope("all")
+//                .authorizedGrantTypes("password,refresh_token")
+//                .authorities(rolesService.listWithTree2())
+//                .accessTokenValidity(3600)
+//                .refreshTokenValidity(86400).build());
 
         // 2、授权码模式
         clientList.add(Client.builder()
@@ -68,7 +81,7 @@ public class ClientServiceImpl implements ClientService {
                 .scope("all")
                 .authorizedGrantTypes("authorization_code,refresh_token")
                 .webServerRedirectUri("/")
-                .authorities("custom")
+                .authorities("CUSTOM")
                 .accessTokenValidity(3600)
                 .refreshTokenValidity(86400).build());
     }

@@ -104,15 +104,15 @@ INSERT INTO powers(power_id, power_name,power_type, power_url, power_icon, power
 VALUES (4, "时间线","页面", "/time", "ph:alarm", 1);
 
 INSERT INTO powers(power_id, power_name,power_type, power_url)
-VALUES (5, "用户API","api", "/auth/users");
+VALUES (5, "用户API","api", "/sys/users");
 INSERT INTO powers(power_id, power_name,power_type, power_url)
-VALUES (6, "角色API","api", "/auth/roles");
+VALUES (6, "角色API","api", "/sys/roles");
 INSERT INTO powers(power_id, power_name,power_type, power_url)
-VALUES (7, "权限API","api", "/auth/powers");
+VALUES (7, "权限API","api", "/sys/powers");
 INSERT INTO powers(power_id, power_name,power_type, power_url)
-VALUES (8, "用户角色API","api", "/auth/userrole");
+VALUES (8, "用户角色API","api", "/sys/userrole");
 INSERT INTO powers(power_id, power_name,power_type, power_url)
-VALUES (9, "角色权限API","api", "/auth/rolepower");
+VALUES (9, "角色权限API","api", "/sys/rolepower");
 
 -- 用户角色表
 CREATE TABLE IF NOT EXISTS user_role
@@ -167,18 +167,18 @@ INSERT INTO role_power(role_id, power_id)
 VALUES (1, 9);
 
 
-CREATE TABLE sys_oauth_client_details
-(
-    client_id               varchar(50) NOT NULL,
-    resource_ids            varchar(255) DEFAULT NULL,
-    client_secret           varchar(255) DEFAULT NULL,
-    scope                   varchar(255) DEFAULT NULL,
-    authorized_grant_types  varchar(255) DEFAULT NULL,
-    web_server_redirect_uri varchar(255) DEFAULT NULL,
-    authorities             varchar(255) DEFAULT NULL,
-    access_token_validity   int(11) DEFAULT NULL,
-    refresh_token_validity  int(11) DEFAULT NULL,
-    additional_information  text,
-    autoapprove             varchar(255) DEFAULT NULL,
-    PRIMARY KEY (client_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='认证客户端';
+-- CREATE TABLE sys_oauth_client_details
+-- (
+--     client_id               varchar(50) NOT NULL,
+--     resource_ids            varchar(255) DEFAULT NULL,
+--     client_secret           varchar(255) DEFAULT NULL,
+--     scope                   varchar(255) DEFAULT NULL,
+--     authorized_grant_types  varchar(255) DEFAULT NULL,
+--     web_server_redirect_uri varchar(255) DEFAULT NULL,
+--     authorities             varchar(255) DEFAULT NULL,
+--     access_token_validity   int(11) DEFAULT NULL,
+--     refresh_token_validity  int(11) DEFAULT NULL,
+--     additional_information  text,
+--     autoapprove             varchar(255) DEFAULT NULL,
+--     PRIMARY KEY (client_id)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='认证客户端';
