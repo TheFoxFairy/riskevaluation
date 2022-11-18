@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 /**
  * 鉴权管理器，用于判断是否有资源的访问权限
  *
- * @author Honghui [wanghonghui_work@163.com] 2021/3/16
  */
 @Component
 public class AuthorizationManager implements ReactiveAuthorizationManager<AuthorizationContext> {
@@ -38,9 +37,9 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
     List<String> authorities = Convert.toList(String.class, obj);
     authorities = authorities.stream().map((i) -> AuthConstant.AUTHORITY_PREFIX + i).collect(Collectors.toList());
 
-    System.out.println("==============================");
-    System.out.println(authorities);
-    System.out.println("==============================");
+//    System.out.println("==============================");
+//    System.out.println(authorities);
+//    System.out.println("==============================");
 
     // 2、认证通过且角色匹配的用户可访问当前路径
     return mono

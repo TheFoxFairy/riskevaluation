@@ -113,6 +113,8 @@ INSERT INTO powers(power_id, power_name,power_type, power_url)
 VALUES (8, "用户角色API","api", "/sys/userrole");
 INSERT INTO powers(power_id, power_name,power_type, power_url)
 VALUES (9, "角色权限API","api", "/sys/rolepower");
+INSERT INTO powers(power_id, power_name,power_type, power_url)
+VALUES (10, "用户权限API","api", "/sys/users/power/type");
 
 -- 用户角色表
 CREATE TABLE IF NOT EXISTS user_role
@@ -165,6 +167,8 @@ INSERT INTO role_power(role_id, power_id)
 VALUES (1, 8);
 INSERT INTO role_power(role_id, power_id)
 VALUES (1, 9);
+INSERT INTO role_power(role_id, power_id)
+VALUES (1, 10);
 
 
 -- CREATE TABLE sys_oauth_client_details

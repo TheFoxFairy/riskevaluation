@@ -39,6 +39,10 @@ public class UsersServiceImpl extends ServiceImpl<UsersDao, UsersEntity> impleme
 
     @Override
     public List<UsersEntity> listWithTree(Map<String, Object> params) {
+
+        Object powerType = params.getOrDefault("powerType",null);
+        params.remove("powerType");
+
         List<UsersEntity> usersEntityList = this.baseMapper.listWithTree(params);
 
         for(int i=0;i < usersEntityList.size();i++) {
@@ -46,6 +50,8 @@ public class UsersServiceImpl extends ServiceImpl<UsersDao, UsersEntity> impleme
             UsersEntity usersEntity = usersEntityList.get(i);
             Map<String, Object> roleParams = new HashMap<>();
             roleParams.put("roleId", usersEntity.getRole().getRoleId());
+            if(powerType != null)
+                roleParams.put("powerType", powerType.toString());
             List<RolesEntity> roles = rolesService.listWithTree(roleParams);
             RolesEntity role = roles.size() == 1 ? roles.get(0) : null;
 
@@ -58,10 +64,17 @@ public class UsersServiceImpl extends ServiceImpl<UsersDao, UsersEntity> impleme
 
     @Override
     public HashMap<String, CopyOnWriteArraySet<Object>> listWithTree2(Map<String, Object> params) {
+
         HashMap<String, CopyOnWriteArraySet<Object>> urlMap = new HashMap<String, CopyOnWriteArraySet<Object>>();
         List<UsersEntity> usersEntities = this.listWithTree(params);
 
+        System.out.println(usersEntities);
+
+        if(usersEntities == null) return urlMap;
+
         for(UsersEntity usersEntity: usersEntities){
+
+            if(usersEntity.getRole() == null) continue;
 
             for(PowersEntity powersEntity:usersEntity.getRole().getPowers()) {
                 String url = powersEntity.getPowerUrl();

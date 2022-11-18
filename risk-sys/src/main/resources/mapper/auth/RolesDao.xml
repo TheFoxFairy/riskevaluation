@@ -3,7 +3,7 @@
 
 <mapper namespace="com.gov.risk.auth.sys.dao.RolesDao">
 
-	<!-- 可根据自己的需求，是否要使用 -->
+    <!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="com.gov.risk.auth.sys.entity.RolesEntity" id="rolesMap">
         <result property="roleId" column="role_id"/>
         <result property="roleName" column="role_name"/>
@@ -20,23 +20,22 @@
 
     <select id="listWithTree" resultMap="rolesMap" parameterType="map">
         select
-            roles.role_id as role_id,roles.role_name as role_name,roles.create_time,
-            powers.power_id,powers.power_name,powers.power_type,powers.power_url,powers.power_icon,powers.power_parent_id
+        roles.role_id as role_id,roles.role_name as role_name,roles.create_time,
+        powers.power_id,powers.power_name,powers.power_type,powers.power_url,powers.power_icon,powers.power_parent_id
         from roles
-                 left join role_power on roles.role_id = role_power.role_id
-                 left join powers on role_power.power_id = powers.power_id
+        left join role_power on roles.role_id = role_power.role_id
+        left join powers on role_power.power_id = powers.power_id
 
         <where>
-            <choose>
-                <when test="roleId != null">
-                    roles.role_id = #{roleId}
-                </when>
-            </choose>
-            <choose>
-                <when test="powerType != null">
-                    powers.power_type = #{powerType}
-                </when>
-            </choose>
+
+            <if test="roleId != null">
+                roles.role_id = #{roleId}
+            </if>
+
+            <if test="powerType != null">
+                and powers.power_type = #{powerType}
+            </if>
+
         </where>
 
         order by role_id;

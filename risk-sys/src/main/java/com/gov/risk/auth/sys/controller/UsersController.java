@@ -32,6 +32,22 @@ public class UsersController {
     @Autowired
     private RolesService rolesService;
 
+    @RequestMapping(value = "/listWithTree",method = RequestMethod.GET, produces = "application/json")
+    public List<UsersEntity> listWithTree(@RequestParam Map<String, Object> params){
+        List<UsersEntity> usersEntityList = usersService.listWithTree(params);
+        return usersEntityList;
+    }
+    @RequestMapping(value = "/listWithTree2",method = RequestMethod.GET, produces = "application/json")
+    public HashMap<String, CopyOnWriteArraySet<Object>> listWithTree2(Map<String, Object> params) {
+        return usersService.listWithTree2(params);
+    }
+
+    @RequestMapping(value = "/power/type",method = RequestMethod.GET, produces = "application/json")
+    public HashMap<String, CopyOnWriteArraySet<Object>> userByPowerType(@RequestParam Map<String, Object> params) {
+        if(params.size() == 0) params.put("powerType","页面");
+        return usersService.listWithTree2(params);
+    }
+
     /**
      * 列表
      */

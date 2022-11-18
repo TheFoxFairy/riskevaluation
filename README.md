@@ -1,5 +1,10 @@
 # 社会评估风险
 
+## 技术工具
+
+* 前端：Vue
+* 后端：Java jdk8 + SpringCloud Alibaba (Nacos 、Gateway、Sentinel) + MySQL + Redis + RabbitMQ
+
 ## 模块结构
 * risk-gateway：网关（统一认证，转发服务等）
 * risk-third-part：集成第三方服务

@@ -26,6 +26,14 @@ public class RolesController {
     @Autowired
     private RolesService rolesService;
 
+    @RequestMapping("/listWithTree")
+    public List<RolesEntity> listWithTree(Map<String, Object> params) {
+        return rolesService.listWithTree(params);
+    }
+    @RequestMapping("/listWithTree2")
+    public String listWithTree2(){
+        return rolesService.listWithTree2();
+    }
 
     /**
      * 列表

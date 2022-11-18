@@ -1,6 +1,6 @@
 package com.gov.risk.auth.component;
 
-import com.gov.risk.auth.security.service.impl.UserPrincipal;
+import com.gov.risk.auth.service.impl.UserPrincipal;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;

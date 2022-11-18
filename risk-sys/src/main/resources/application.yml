@@ -15,6 +15,8 @@ spring:
     port: 6379
     host: localhost
     password:
+  main:
+    allow-bean-definition-overriding: true
 
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**/*.xml

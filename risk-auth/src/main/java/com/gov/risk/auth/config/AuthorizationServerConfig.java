@@ -1,8 +1,8 @@
 package com.gov.risk.auth.config;
 
 import com.gov.risk.auth.component.JwtTokenEnhancer;
-import com.gov.risk.auth.security.service.ClientService;
-import com.gov.risk.auth.security.service.UserService;
+import com.gov.risk.auth.service.ClientService;
+import com.gov.risk.auth.service.UserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,7 +31,7 @@ import java.util.List;
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
 
-    private final UserService userService;
+    private final UserDetailsService userDetailsService;
     private final ClientService clientService;
     private final AuthenticationManager authenticationManager;
     private final JwtTokenEnhancer jwtTokenEnhancer;
@@ -54,7 +54,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         delegates.add(jwtAccessTokenConverter());
         enhancerChain.setTokenEnhancers(delegates); //配置JWT的内容增强器
         endpoints.authenticationManager(authenticationManager)
-                .userDetailsService(userService) //配置加载用户信息的服务
+                .userDetailsService(userDetailsService) //配置加载用户信息的服务
                 .accessTokenConverter(jwtAccessTokenConverter())
                 .tokenEnhancer(enhancerChain);
     }

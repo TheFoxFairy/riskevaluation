@@ -3,6 +3,8 @@ package com.gov.risk.auth.sys.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.gov.risk.auth.sys.entity.PowersEntity;
 import com.gov.risk.common.utils.PageUtils;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.HashMap;
 import java.util.Map;

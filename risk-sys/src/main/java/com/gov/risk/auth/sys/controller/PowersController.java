@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -24,6 +25,10 @@ import java.util.Map;
 public class PowersController {
     @Autowired
     private PowersService powersService;
+    @RequestMapping("/getPowerAllRoles")
+    public HashMap<String, String> getPowerAllRoles() {
+        return powersService.getPowerAllRoles();
+    }
 
     /**
      * 列表
@@ -31,7 +36,6 @@ public class PowersController {
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = powersService.queryPage(params);
-
         return R.ok().put("page", page);
     }
 

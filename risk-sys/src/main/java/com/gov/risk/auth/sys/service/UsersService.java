@@ -3,6 +3,7 @@ package com.gov.risk.auth.sys.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.gov.risk.auth.sys.entity.UsersEntity;
 import com.gov.risk.common.utils.PageUtils;
+import org.springframework.cloud.openfeign.FeignClient;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,5 +24,6 @@ public interface UsersService extends IService<UsersEntity> {
     List<UsersEntity> listWithTree(Map<String, Object> params);
 
     HashMap<String, CopyOnWriteArraySet<Object>> listWithTree2(Map<String, Object> params);
+//    HashMap<String, CopyOnWriteArraySet<Object>> listWithTreeByPowerType(Map<String, Object> params);
 }
 
