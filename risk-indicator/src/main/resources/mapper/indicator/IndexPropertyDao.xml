@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gov.risk.indicator.dao.IndexPropertyDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.gov.risk.indicator.entity.IndexPropertyEntity" id="indexPropertyMap">
+        <result property="indexPropertyId" column="index_property_id"/>
+        <result property="indexId" column="index_id"/>
+        <result property="identification" column="identification"/>
+        <result property="standardValue" column="standard_value"/>
+        <result property="standardValueSupplement" column="standard_value_supplement"/>
+        <result property="extra" column="extra"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+
+    <select id="indexPropertyByIndexId" resultMap="indexPropertyMap" parameterType="map">
+        SELECT
+            *
+        FROM index_property
+        WHERE index_id = #{indexId} AND identification=#{identification};
+    </select>
+
+
+    <select id="countIdentification" resultType="java.lang.String" parameterType="map">
+        SELECT
+            identification
+        FROM index_property
+        <where>
+            <if test="identification != null">
+                identification = #{identification}
+            </if>
+        </where>
+        GROUP BY identification;
+    </select>
+
+</mapper>
