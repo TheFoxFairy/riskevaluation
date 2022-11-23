@@ -1,0 +1,13 @@
+
+
+algorithms: # 算法相关配置
+  basePosition: algorithms # 默认存在resources文件目录下的
+  filename: # filename：表示当前算法存储位置下的算法文件名称/描述
+    algorithm1: # 算法的名称，方便统一管理
+      name: xxx名称 # 算法详细（中文）名称
+      desc: xxx描述 # 算法详细描述
+      position: hello.py #表示算法的存储位置，需要结合   basePosition + position
+    algorithm2:
+      name: xxx名称
+      desc: xxx描述
+      position: hello.py
