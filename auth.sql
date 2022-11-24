@@ -186,3 +186,29 @@ VALUES (1, 10);
 --     autoapprove             varchar(255) DEFAULT NULL,
 --     PRIMARY KEY (client_id)
 -- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='认证客户端';
+
+
+-- 一个用户拥有一个角色，该角色对服务进行订阅（订阅服务），系统发送信息给订阅ID频道（发送信息），
+-- 具有相应角色的用户都能够获取到相应信息
+
+-- 订阅表：订阅服务功能
+CREATE TABLE IF NOT EXISTS subscription(
+    -- 订阅ID
+    -- 服务名称
+)
+
+-- 订阅 - 角色表：该角色拥有哪些订阅功能
+CREATE TABLE IF NOT EXISTS subscription_role(
+    -- 订阅ID
+    -- 角色ID
+)
+
+-- 一般情况下订阅信息
+-- 订阅信息表 （订阅了当前服务，当前服务不断推送的信息）
+CREATE TABLE IF NOT EXISTS subscription_info(
+    -- 订阅信息ID
+    -- 订阅ID
+    -- 订阅内容
+    -- 是否点击/查看过
+    -- 发送时间
+)
