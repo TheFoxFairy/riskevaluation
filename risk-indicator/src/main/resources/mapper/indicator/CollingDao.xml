@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gov.risk.indicator.dao.CollingDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.gov.risk.indicator.entity.CollingEntity" id="collingByIndexIdMap">
+        <result property="collingId" column="colling_id"/>
+        <result property="collingName" column="colling_name"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <select id="collingByIndexId" resultMap="collingByIndexIdMap" parameterType="map">
+        SELECT
+            colling.colling_id,colling.colling_name,colling.create_time
+        FROM colling
+                 JOIN colling_indexes on colling.colling_id = colling_indexes.colling_id
+        WHERE colling_indexes.index_id = #{indexId};
+    </select>
+</mapper>

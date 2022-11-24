@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.gov.risk.auth.sys.dao.RolesDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.gov.risk.auth.sys.entity.RolesEntity" id="rolesMap">
+        <result property="roleId" column="role_id"/>
+        <result property="roleName" column="role_name"/>
+        <result property="createTime" column="create_time"/>
+        <collection property="powers" ofType="com.gov.risk.auth.sys.entity.PowersEntity">
+            <result property="powerId" column="power_id"/>
+            <result property="powerName" column="power_name"/>
+            <result property="powerType" column="power_type"/>
+            <result property="powerUrl" column="power_url"/>
+            <result property="powerIcon" column="power_icon"/>
+            <result property="powerParentId" column="power_parent_id"/>
+        </collection>
+    </resultMap>
+
+    <select id="listWithTree" resultMap="rolesMap" parameterType="map">
+        select
+        roles.role_id as role_id,roles.role_name as role_name,roles.create_time,
+        powers.power_id,powers.power_name,powers.power_type,powers.power_url,powers.power_icon,powers.power_parent_id
+        from roles
+        left join role_power on roles.role_id = role_power.role_id
+        left join powers on role_power.power_id = powers.power_id
+
+        <where>
+
+            <if test="roleId != null">
+                roles.role_id = #{roleId}
+            </if>
+
+            <if test="powerType != null">
+                and powers.power_type = #{powerType}
+            </if>
+
+        </where>
+
+        order by role_id;
+    </select>
+
+</mapper>
