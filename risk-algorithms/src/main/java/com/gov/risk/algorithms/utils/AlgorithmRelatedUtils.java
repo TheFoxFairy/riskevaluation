@@ -1,5 +1,6 @@
 package com.gov.risk.algorithms.utils;
 
+import com.gov.risk.common.utils.R;
 import org.springframework.util.ResourceUtils;
 
 import java.io.*;
@@ -67,7 +68,7 @@ public class AlgorithmRelatedUtils {
         // 获取算法文件路径
         String filename = this.getFilePath(algorithmName);
 
-        String[] arguments = new String[] {"python",filename,"1"}; //指定命令、路径、传递的参数
+        String[] arguments = new String[] {"python",filename}; //指定命令、路径、传递的参数
         try {
             Process process = Runtime.getRuntime().exec(arguments);
             System.out.println(readProcessOutput(process.getInputStream()));
@@ -76,8 +77,15 @@ public class AlgorithmRelatedUtils {
             throw new RuntimeException(e);
         }
 
-
     }
+
+    /*
+      解析为json
+     */
+    public String StringToJson(){
+        return null;
+    }
+
     /*
         读取python打印的数据（一般可以在成功后，获取打印数据，来判断下一步怎么做）
      */
@@ -88,11 +96,11 @@ public class AlgorithmRelatedUtils {
         }
     }
 
-    public static void main(String[] args) {
-        AlgorithmRelatedUtils relatedUtils = new AlgorithmRelatedUtils();
-        HashMap<String,Object> options = relatedUtils.readYmlForOptions();
-        relatedUtils.schedule("algorithm1");
-    }
+//    public static void main(String[] args) {
+//        AlgorithmRelatedUtils relatedUtils = new AlgorithmRelatedUtils();
+////        HashMap<String,Object> options = relatedUtils.readYmlForOptions();
+//        relatedUtils.schedule("algorithm1",new R());
+//    }
 
 
 }
