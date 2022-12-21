@@ -25,12 +25,14 @@ CREATE TABLE IF NOT EXISTS index_property
 
     identification VARCHAR(255) COMMENT '用于表示是否是同一张表',
 
+    truth_value VARCHAR(255) COMMENT '真实值',
     standard_value VARCHAR(1000) COMMENT '标准值',
     standard_value_supplement VARCHAR(1000) COMMENT '标准值补充/修正',
     extra VARCHAR(1000) COMMENT '可备注',
 
     create_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间'
 ) CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT '指标属性表';
+
 
 -- 指标依据表
 CREATE TABLE IF NOT EXISTS colling
@@ -45,4 +47,14 @@ CREATE TABLE IF NOT EXISTS colling_indexes
 (
     colling_id  INT(10)  COMMENT '指标依据ID' ,
     index_id    INT(10)  COMMENT '指标ID'
+) CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT '指标依据与指标表';
+
+-- 异常表
+CREATE TABLE IF NOT EXISTS error_index
+(
+    error_index_id INT(10) PRIMARY KEY COMMENT '异常指标ID' auto_increment,
+    index_id    INT(10)  COMMENT '指标ID',
+    level VARCHAR(255) COMMENT '风险等级',
+    status VARCHAR(255) COMMENT '指标状态',
+    create_time DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间'
 ) CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT '指标依据与指标表';
