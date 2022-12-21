@@ -1,4 +1,43 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/indicator?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        password: nacos
+        username: nacos
+  main:
+    allow-bean-definition-overriding: true
 
+# feign调用超时时间配置
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 600000
+
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.gov.risk.algorithms.entity
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+#暴露监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 
 algorithms: # 算法相关配置
   basePosition: algorithms # 默认存在resources文件目录下的
@@ -6,8 +45,9 @@ algorithms: # 算法相关配置
     algorithm1: # 算法的名称，方便统一管理
       name: xxx名称 # 算法详细（中文）名称
       desc: xxx描述 # 算法详细描述
-      position: hello.py #表示算法的存储位置，需要结合   basePosition + position
+      position: algorithm1.py #表示算法的存储位置，需要结合   basePosition + position
     algorithm2:
       name: xxx名称
       desc: xxx描述
       position: hello.py
+

@@ -1,5 +1,6 @@
 package com.gov.risk.indicator.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -32,6 +33,11 @@ public class IndexPropertyEntity implements Serializable {
 	 * 用于表示是否是同一张表
 	 */
 	private String identification;
+	/**
+	 * 标准值
+	 */
+	@TableField(exist = false) // 只有观测指标有
+	private String truthValue;
 	/**
 	 * 标准值
 	 */

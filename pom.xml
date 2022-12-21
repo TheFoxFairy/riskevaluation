@@ -23,6 +23,8 @@
         <module>risk-sys</module>
         <module>risk-third-part</module>
         <module>renren-generator</module>
+        <module>risk-publisher</module>
+        <module>risk-consumer</module>
     </modules>
 
     <build>

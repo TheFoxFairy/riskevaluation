@@ -25,6 +25,10 @@ import java.util.Map;
 public class PowersController {
     @Autowired
     private PowersService powersService;
+
+    /**
+     * 获取该权限下的所有角色
+     */
     @RequestMapping("/getPowerAllRoles")
     public HashMap<String, String> getPowerAllRoles() {
         return powersService.getPowerAllRoles();
